@@ -1,23 +1,23 @@
-interface Node {
+export interface FigmaNode {
   id: String;
   name: String;
   visible: Boolean;
   type: "DOCUMENT";
 }
 
-interface Document extends Node {
-  children: Node[];
+export interface FigmaDocument extends FigmaNode {
+  children: FigmaNode[];
 }
 
-interface Canvas extends Node {
-  children: Node[];
+export interface Canvas extends FigmaNode {
+  children: FigmaNode[];
   backgroundColor: Color;
   prototypeStartNodeID: String;
   exportSettings: ExportSetting[];
 }
 
-interface Frame extends Node {
-  children: Node[];
+export interface Frame extends FigmaNode {
+  children: FigmaNode[];
   locked: Boolean;
   background: Paint[];
   backgroundColor: Color;
@@ -45,9 +45,9 @@ interface Frame extends Node {
   isMaskOutline: Boolean;
 }
 
-interface Group extends Frame {}
+export interface Group extends Frame {}
 
-interface Vector extends Node {
+export interface Vector extends FigmaNode {
   locked: Boolean;
   exportSettings: ExportSetting[];
   blendMode: BlendMode;
@@ -75,73 +75,73 @@ interface Vector extends Node {
   styles: Record<StyleType, String>;
 }
 
-interface BooleanOperation extends Vector {
-  children: Node[];
+export interface BooleanOperation extends Vector {
+  children: FigmaNode[];
   booleanOperation: String;
 }
 
-interface Star extends Vector {}
-interface Line extends Vector {}
-interface Ellipse extends Vector {}
-interface RegularPolygon extends Vector {}
+export interface Star extends Vector {}
+export interface Line extends Vector {}
+export interface Ellipse extends Vector {}
+export interface RegularPolygon extends Vector {}
 
-interface Rectangle extends Vector {
+export interface Rectangle extends Vector {
   cornerRadius: Number;
   rectangleCornerRadii: [Number, Number, Number, Number];
 }
 
-interface Text extends Vector {
+export interface Text extends Vector {
   characters: String;
   style: TypeStyle;
   characterStyleOverrides: Number[];
   styleOverrideTable: Record<Number, TypeStyle>;
 }
 
-interface Slice {
+export interface Slice {
   exportSettings: ExportSetting[];
   absoluteBoundingBox: Rectangle;
   size: Vector;
   relativeTransform: Transform;
 }
 
-interface Component extends Frame {}
+export interface Component extends Frame {}
 
-interface Instance extends Frame {
+export interface Instance extends Frame {
   componentId: String;
 }
 
-interface Color {
+export interface Color {
   r: Number;
   g: Number;
   b: Number;
   a: Number;
 }
 
-interface ExportSetting {
+export interface ExportSetting {
   suffix: String;
   format: String;
   constraint: Constraint;
 }
 
-interface Constraint {
+export interface Constraint {
   type: ConstraintType;
   value: Number;
 }
 
-enum ConstraintType {
+export enum ConstraintType {
   SCALE,
   WIDTH,
   HEIGHT,
 }
 
-interface Rectangle {
+export interface Rectangle {
   x: Number;
   y: Number;
   width: Number;
   height: Number;
 }
 
-enum BlendMode {
+export enum BlendMode {
   PASS_THROUGH,
   NORMAL,
   DARKEN,
@@ -163,19 +163,19 @@ enum BlendMode {
   LUMINOSITY,
 }
 
-enum EasingType {
+export enum EasingType {
   EASE_IN,
   EASE_OUT,
   EASE_IN_AND_OUT,
   LINEAR,
 }
 
-interface LayoutConstraint {
+export interface LayoutConstraint {
   vertical: VerticalLayoutConstraint;
   horizontal: HorizontalLayoutConstraint;
 }
 
-enum VerticalLayoutConstraint {
+export enum VerticalLayoutConstraint {
   TOP,
   BOTTOM,
   CENTER,
@@ -183,10 +183,33 @@ enum VerticalLayoutConstraint {
   SCALE,
 }
 
-enum HorizontalLayoutConstraint {
+export enum HorizontalLayoutConstraint {
   LEFT,
   RIGHT,
   CENTER,
   LEFT_RIGHT,
   SCALE,
+}
+
+export interface LayoutGrid {
+  pattern: Pattern;
+  sectionSize: Number;
+  visible: Boolean;
+  color: Color;
+  alignment: Alignment;
+  gutterSize: Number;
+  offset: Number;
+  count: Number;
+}
+
+export enum Pattern {
+  COLUMNS,
+  ROWS,
+  GRID,
+}
+
+export enum Alignment {
+  MIN,
+  STRETCH,
+  CENTER,
 }
