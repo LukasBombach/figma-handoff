@@ -1,0 +1,11 @@
+{
+  "name": "figma-handoff",
+  "version": "1.0.0",
+  "repository": "https://github.com/LukasBombach/figma-handoff",
+  "author": "Lukas Bombach <lukas.bombach@googlemail.com>",
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "private": true
+}

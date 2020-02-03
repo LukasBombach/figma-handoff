@@ -1,0 +1,12 @@
+{
+  "name": "figma-renderer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "dependencies": {
+    "konva": "4.1.3",
+    "react": "16.12.0",
+    "react-dom": "16.12.0",
+    "react-konva": "16.12.0-0"
+  }
+}
