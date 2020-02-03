@@ -1,11 +1,16 @@
 import { getFigmaFile } from "../api/useFigmaFile";
+import FigmaRenderer from "../components/FigmaRenderer";
 
 function HomePage({ file }) {
+  if (process.browser) {
+    console.log(file);
+  }
+
   return (
-    <div>
-      {!file && <em>loading…</em>}
-      {file && <pre>{JSON.stringify(file, null, 2)}</pre>}
-    </div>
+    <main>
+      <h1>{file.name}</h1>
+      <FigmaRenderer />
+    </main>
   );
 }
 
