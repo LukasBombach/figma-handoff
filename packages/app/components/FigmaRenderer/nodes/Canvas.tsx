@@ -35,6 +35,7 @@ const Canvas: FC<{ node: CANVAS }> = ({ node: canvas }) => {
     evt.preventDefault();
   };
 
+  // todo create hook
   const handleDragEnd = (e: Konva.KonvaEventObject<DragEvent>) => {
     const { x, y } = e.target.attrs;
     setPosition([x, y]);
