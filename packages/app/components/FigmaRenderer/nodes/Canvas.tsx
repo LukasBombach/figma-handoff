@@ -1,5 +1,5 @@
 import { FC } from "react";
-import { Stage, Rect } from "react-konva";
+import { Rect } from "react-konva";
 import { CANVAS } from "../../../types/figma";
 import Node from "./Node";
 import colorToRgba from "../colorToRgba";
