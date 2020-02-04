@@ -13,7 +13,7 @@ const typeMap = {
 const Node: FC<{ node: NODE }> = ({ node }) => {
   const NodeType = typeMap[node.type];
   if (NodeType) return <NodeType node={node} />;
-  console.warn(`Missing render node for ${node.name} (${node.type})`, node);
+  // console.warn(`Missing render node for ${node.name} (${node.type})`, node);
   return null;
 };
 

@@ -10,6 +10,22 @@ const HomePage: NextPage<{ file: FileApiResponse }> = ({ file }) => {
     <main>
       <h1>{file.name}</h1>
       <FigmaRenderer document={file.document} />
+      <style global jsx>{`
+        html,
+        body,
+        body > div:first-child,
+        div#__next,
+        div#__next > div,
+        div#__next > div > div {
+          height: 100vh;
+        }
+      `}</style>
+      <style jsx>{`
+        main {
+          height: 100%;
+          width: 100%;
+        }
+      `}</style>
     </main>
   );
 };
