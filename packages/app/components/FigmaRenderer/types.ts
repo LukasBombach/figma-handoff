@@ -1,23 +1,23 @@
-export interface FigmaNode {
+interface NODE {
   id: string;
   name: string;
   visible: boolean;
   type: "DOCUMENT";
 }
 
-export interface FigmaDocument extends FigmaNode {
-  children: FigmaNode[];
+export interface DOCUMENT extends NODE {
+  children: NODE[];
 }
 
-export interface Canvas extends FigmaNode {
-  children: FigmaNode[];
+export interface CANVAS extends NODE {
+  children: NODE[];
   backgroundColor: Color;
   prototypeStartNodeID: string;
   exportSettings: ExportSetting[];
 }
 
-export interface Frame extends FigmaNode {
-  children: FigmaNode[];
+export interface CANVAS extends NODE {
+  children: NODE[];
   locked: boolean;
   background: Paint[];
   backgroundColor: Color;
@@ -45,9 +45,9 @@ export interface Frame extends FigmaNode {
   isMaskOutline: boolean;
 }
 
-export interface Group extends Frame {}
+export interface GROUP extends CANVAS {}
 
-export interface Vector extends FigmaNode {
+export interface VECTOR extends NODE {
   locked: boolean;
   exportSettings: ExportSetting[];
   blendMode: BlendMode;
@@ -75,38 +75,38 @@ export interface Vector extends FigmaNode {
   styles: Record<StyleType, string>;
 }
 
-export interface BooleanOperation extends Vector {
-  children: FigmaNode[];
+export interface BOOLEAN_OPERATION extends VECTOR {
+  children: NODE[];
   booleanOperation: string;
 }
 
-export interface Star extends Vector {}
-export interface Line extends Vector {}
-export interface Ellipse extends Vector {}
-export interface RegularPolygon extends Vector {}
+export interface STAR extends VECTOR {}
+export interface LINE extends VECTOR {}
+export interface ELLIPSE extends VECTOR {}
+export interface REGULAR_POLYGON extends VECTOR {}
 
-export interface Rectangle extends Vector {
+export interface RECTANGLE extends VECTOR {
   cornerRadius: number;
   rectangleCornerRadii: [number, number, number, number];
 }
 
-export interface Text extends Vector {
+export interface TEXT extends VECTOR {
   characters: string;
   style: TypeStyle;
   characterStyleOverrides: number[];
   styleOverrideTable: Record<number, TypeStyle>;
 }
 
-export interface Slice {
+export interface SLICE {
   exportSettings: ExportSetting[];
   absoluteBoundingBox: Rectangle;
   size: Vector;
   relativeTransform: Transform;
 }
 
-export interface Component extends Frame {}
+export interface COMPONENT extends CANVAS {}
 
-export interface Instance extends Frame {
+export interface INSTANCE extends CANVAS {
   componentId: string;
 }
 
