@@ -1,7 +1,7 @@
 export interface FigmaNode {
-  id: String;
-  name: String;
-  visible: Boolean;
+  id: string;
+  name: string;
+  visible: boolean;
   type: "DOCUMENT";
 }
 
@@ -12,72 +12,72 @@ export interface FigmaDocument extends FigmaNode {
 export interface Canvas extends FigmaNode {
   children: FigmaNode[];
   backgroundColor: Color;
-  prototypeStartNodeID: String;
+  prototypeStartNodeID: string;
   exportSettings: ExportSetting[];
 }
 
 export interface Frame extends FigmaNode {
   children: FigmaNode[];
-  locked: Boolean;
+  locked: boolean;
   background: Paint[];
   backgroundColor: Color;
   fills: Paint[];
   strokes: Paint[];
-  strokeWeight: Number;
-  strokeAlign: String;
-  cornerRadius: Number;
-  rectangleCornerRadii: Number[];
+  strokeWeight: number;
+  strokeAlign: string;
+  cornerRadius: number;
+  rectangleCornerRadii: number[];
   exportSettings: ExportSetting[];
   blendMode: BlendMode;
-  preserveRatio: Boolean;
+  preserveRatio: boolean;
   constraints: LayoutConstraint;
-  transitionNodeID: String;
-  transitionDuration: Number;
+  transitionNodeID: string;
+  transitionDuration: number;
   transitionEasing: EasingType;
-  opacity: Number;
+  opacity: number;
   absoluteBoundingBox: Rectangle;
   size: Vector;
   relativeTransform: Transform;
-  clipsContent: Boolean;
+  clipsContent: boolean;
   layoutGrids: LayoutGrid[];
   effects: Effect[];
-  isMask: Boolean;
-  isMaskOutline: Boolean;
+  isMask: boolean;
+  isMaskOutline: boolean;
 }
 
 export interface Group extends Frame {}
 
 export interface Vector extends FigmaNode {
-  locked: Boolean;
+  locked: boolean;
   exportSettings: ExportSetting[];
   blendMode: BlendMode;
-  preserveRatio: Boolean;
+  preserveRatio: boolean;
   constraints: LayoutConstraint;
-  transitionNodeID: String;
-  transitionDuration: Number;
+  transitionNodeID: string;
+  transitionDuration: number;
   transitionEasing: EasingType;
-  opacity: Number;
+  opacity: number;
   absoluteBoundingBox: Rectangle;
   effects: Effect[];
   size: Vector;
   relativeTransform: Transform;
-  isMask: Boolean;
+  isMask: boolean;
   fills: Paint[];
   fillGeometry: Path[];
   strokes: Paint[];
-  strokeWeight: Number;
-  strokeCap: String;
-  strokeJoin: String;
-  strokeDashes: Number[];
-  strokeMiterAngle: Number;
+  strokeWeight: number;
+  strokeCap: string;
+  strokeJoin: string;
+  strokeDashes: number[];
+  strokeMiterAngle: number;
   strokeGeometry: Path[];
-  strokeAlign: String;
-  styles: Record<StyleType, String>;
+  strokeAlign: string;
+  styles: Record<StyleType, string>;
 }
 
 export interface BooleanOperation extends Vector {
   children: FigmaNode[];
-  booleanOperation: String;
+  booleanOperation: string;
 }
 
 export interface Star extends Vector {}
@@ -86,15 +86,15 @@ export interface Ellipse extends Vector {}
 export interface RegularPolygon extends Vector {}
 
 export interface Rectangle extends Vector {
-  cornerRadius: Number;
-  rectangleCornerRadii: [Number, Number, Number, Number];
+  cornerRadius: number;
+  rectangleCornerRadii: [number, number, number, number];
 }
 
 export interface Text extends Vector {
-  characters: String;
+  characters: string;
   style: TypeStyle;
-  characterStyleOverrides: Number[];
-  styleOverrideTable: Record<Number, TypeStyle>;
+  characterStyleOverrides: number[];
+  styleOverrideTable: Record<number, TypeStyle>;
 }
 
 export interface Slice {
@@ -107,25 +107,25 @@ export interface Slice {
 export interface Component extends Frame {}
 
 export interface Instance extends Frame {
-  componentId: String;
+  componentId: string;
 }
 
 export interface Color {
-  r: Number;
-  g: Number;
-  b: Number;
-  a: Number;
+  r: number;
+  g: number;
+  b: number;
+  a: number;
 }
 
 export interface ExportSetting {
-  suffix: String;
-  format: String;
+  suffix: string;
+  format: string;
   constraint: Constraint;
 }
 
 export interface Constraint {
   type: ConstraintType;
-  value: Number;
+  value: number;
 }
 
 export enum ConstraintType {
@@ -135,10 +135,10 @@ export enum ConstraintType {
 }
 
 export interface Rectangle {
-  x: Number;
-  y: Number;
-  width: Number;
-  height: Number;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
 }
 
 export enum BlendMode {
@@ -193,13 +193,13 @@ export enum HorizontalLayoutConstraint {
 
 export interface LayoutGrid {
   pattern: Pattern;
-  sectionSize: Number;
-  visible: Boolean;
+  sectionSize: number;
+  visible: boolean;
   color: Color;
   alignment: Alignment;
-  gutterSize: Number;
-  offset: Number;
-  count: Number;
+  gutterSize: number;
+  offset: number;
+  count: number;
 }
 
 export enum Pattern {
@@ -216,8 +216,8 @@ export enum Alignment {
 
 export interface Effect {
   type: EffectType;
-  visible: Boolean;
-  radius: Number;
+  visible: boolean;
+  radius: number;
   color: Color;
   blendMode: BlendMode;
   offset: Vector;
@@ -232,17 +232,17 @@ export enum EffectType {
 
 export interface Paint {
   type: PaintType;
-  visible: Boolean;
-  opacity: Number;
+  visible: boolean;
+  opacity: number;
   color: Color;
   blendMode: BlendMode;
   gradientHandlePositions: Vector[];
   gradientStops: ColorStop[];
   scaleMode: ScaleMode;
   imageTransform: Transform;
-  scalingFactor: Number;
-  imageRef: String;
-  gifRef: String;
+  scalingFactor: number;
+  imageRef: string;
+  gifRef: string;
 }
 
 export enum PaintType {
@@ -263,45 +263,45 @@ export enum ScaleMode {
 }
 
 export interface Vector {
-  x: Number;
-  y: Number;
+  x: number;
+  y: number;
 }
 
 export interface Size {
-  width: Number;
-  height: Number;
+  width: number;
+  height: number;
 }
 
-export type Transform = [[Number, Number, Number], [Number, Number, Number]];
+export type Transform = [[number, number, number], [number, number, number]];
 
 export interface FrameOffset {
-  node_id: String;
+  node_id: string;
   node_offset: Vector;
 }
 
 export interface ColorStop {
-  position: Number;
+  position: number;
   color: Color;
 }
 
 export interface TypeStyle {
-  fontFamily: String;
-  fontPostScriptName: String;
-  paragraphSpacing: Number;
-  paragraphIndent: Number;
-  italic: Boolean;
-  fontWeight: Number;
-  fontSize: Number;
+  fontFamily: string;
+  fontPostScriptName: string;
+  paragraphSpacing: number;
+  paragraphIndent: number;
+  italic: boolean;
+  fontWeight: number;
+  fontSize: number;
   textCase: TextCase;
   textDecoration: TextDecoration;
   textAlignHorizontal: TextAlignHorizontal;
   textAlignVertical: TextAlignVertical;
-  letterSpacing: Number;
+  letterSpacing: number;
   fills: Paint[];
-  opentypeFlags: Record<string, Number>;
-  lineHeightPx: Number;
-  lineHeightPercent: Number;
-  lineHeightPercentFontSize: Number;
+  opentypeFlags: Record<string, number>;
+  lineHeightPx: number;
+  lineHeightPercent: number;
+  lineHeightPercentFontSize: number;
   lineHeightUnit: LineHeightUnit;
 }
 
@@ -338,15 +338,15 @@ export enum LineHeightUnit {
 }
 
 export interface Component {
-  key: String;
-  name: String;
-  description: String;
+  key: string;
+  name: string;
+  description: string;
 }
 
 export interface Style {
-  key: String;
-  name: String;
-  description: String;
+  key: string;
+  name: string;
+  description: string;
   style_type: StyleType;
 }
 
