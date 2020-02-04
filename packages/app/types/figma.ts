@@ -1,22 +1,64 @@
-interface NODE {
+export interface FileApiResponse {
+  default: {
+    document: DOCUMENT;
+    components: Record<string, Component>;
+    schemaVersion: number;
+    styles: Record<string, Style>;
+    name: string;
+    lastModified: string;
+    thumbnailUrl: string;
+    version: string;
+    role: "owner";
+  };
+  document: DOCUMENT;
+  components: Record<string, Component>;
+  schemaVersion: number;
+  styles: Record<string, Style>;
+  name: string;
+  lastModified: string;
+  thumbnailUrl: string;
+  version: string;
+  role: "owner";
+}
+
+export interface NODE {
+  type:
+    | "DOCUMENT"
+    | "CANVAS"
+    | "FRAME"
+    | "GROUP"
+    | "VECTOR"
+    | "BOOLEAN_OPERATION"
+    | "STAR"
+    | "LINE"
+    | "ELLIPSE"
+    | "REGULAR_POLYGON"
+    | "RECTANGLE"
+    | "TEXT";
   id: string;
   name: string;
   visible: boolean;
-  type: "DOCUMENT";
 }
 
 export interface DOCUMENT extends NODE {
+  type: "DOCUMENT";
   children: NODE[];
 }
 
-export interface CANVAS extends NODE {
+export interface GROUP_OR_CANVAS extends NODE {
+  type: "CANVAS" | "GROUP";
   children: NODE[];
   backgroundColor: Color;
   prototypeStartNodeID: string;
   exportSettings: ExportSetting[];
 }
 
-export interface CANVAS extends NODE {
+export interface CANVAS extends GROUP_OR_CANVAS {
+  type: "CANVAS";
+}
+
+export interface FRAME extends NODE {
+  type: "FRAME";
   children: NODE[];
   locked: boolean;
   background: Paint[];
@@ -45,9 +87,20 @@ export interface CANVAS extends NODE {
   isMaskOutline: boolean;
 }
 
-export interface GROUP extends CANVAS {}
+export interface GROUP extends GROUP_OR_CANVAS {
+  type: "GROUP";
+}
 
-export interface VECTOR extends NODE {
+export interface VECTOR_BASE extends NODE {
+  type:
+    | "VECTOR"
+    | "BOOLEAN_OPERATION"
+    | "STAR"
+    | "LINE"
+    | "ELLIPSE"
+    | "REGULAR_POLYGON"
+    | "RECTANGLE"
+    | "TEXT";
   locked: boolean;
   exportSettings: ExportSetting[];
   blendMode: BlendMode;
@@ -75,22 +128,38 @@ export interface VECTOR extends NODE {
   styles: Record<StyleType, string>;
 }
 
-export interface BOOLEAN_OPERATION extends VECTOR {
+export interface VECTOR extends VECTOR_BASE {
+  type: "VECTOR";
+}
+
+export interface BOOLEAN_OPERATION extends VECTOR_BASE {
+  type: "BOOLEAN_OPERATION";
+
   children: NODE[];
   booleanOperation: string;
 }
 
-export interface STAR extends VECTOR {}
-export interface LINE extends VECTOR {}
-export interface ELLIPSE extends VECTOR {}
-export interface REGULAR_POLYGON extends VECTOR {}
+export interface STAR extends VECTOR_BASE {
+  type: "STAR";
+}
+export interface LINE extends VECTOR_BASE {
+  type: "LINE";
+}
+export interface ELLIPSE extends VECTOR_BASE {
+  type: "ELLIPSE";
+}
+export interface REGULAR_POLYGON extends VECTOR_BASE {
+  type: "REGULAR_POLYGON";
+}
 
-export interface RECTANGLE extends VECTOR {
+export interface RECTANGLE extends VECTOR_BASE {
+  type: "RECTANGLE";
   cornerRadius: number;
   rectangleCornerRadii: [number, number, number, number];
 }
 
-export interface TEXT extends VECTOR {
+export interface TEXT extends VECTOR_BASE {
+  type: "TEXT";
   characters: string;
   style: TypeStyle;
   characterStyleOverrides: number[];
