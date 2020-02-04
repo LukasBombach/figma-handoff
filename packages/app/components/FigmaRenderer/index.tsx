@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { DOCUMENT } from "../../types/figma";
-import { Stage, Layer, Text } from "react-konva";
+import { Stage, Layer } from "react-konva";
 import Document from "./nodes/Document";
 
 const FigmaRenderer: FC<{ document: DOCUMENT }> = ({ document }) => {
