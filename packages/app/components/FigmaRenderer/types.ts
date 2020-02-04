@@ -356,3 +356,5 @@ export enum StyleType {
   EFFECT = "EFFECT",
   GRID = "GRID",
 }
+
+export type Path = unknown;
