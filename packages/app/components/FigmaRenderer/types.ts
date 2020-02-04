@@ -129,9 +129,9 @@ export interface Constraint {
 }
 
 export enum ConstraintType {
-  SCALE,
-  WIDTH,
-  HEIGHT,
+  SCALE = "SCALE",
+  WIDTH = "WIDTH",
+  HEIGHT = "HEIGHT",
 }
 
 export interface Rectangle {
@@ -142,32 +142,32 @@ export interface Rectangle {
 }
 
 export enum BlendMode {
-  PASS_THROUGH,
-  NORMAL,
-  DARKEN,
-  MULTIPLY,
-  LINEAR_BURN,
-  COLOR_BURN,
-  LIGHTEN,
-  SCREEN,
-  LINEAR_DODGE,
-  COLOR_DODGE,
-  OVERLAY,
-  SOFT_LIGHT,
-  HARD_LIGHT,
-  DIFFERENCE,
-  EXCLUSION,
-  HUE,
-  SATURATION,
-  COLOR,
-  LUMINOSITY,
+  PASS_THROUGH = "PASS_THROUGH",
+  NORMAL = "NORMAL",
+  DARKEN = "DARKEN",
+  MULTIPLY = "MULTIPLY",
+  LINEAR_BURN = "LINEAR_BURN",
+  COLOR_BURN = "COLOR_BURN",
+  LIGHTEN = "LIGHTEN",
+  SCREEN = "SCREEN",
+  LINEAR_DODGE = "LINEAR_DODGE",
+  COLOR_DODGE = "COLOR_DODGE",
+  OVERLAY = "OVERLAY",
+  SOFT_LIGHT = "SOFT_LIGHT",
+  HARD_LIGHT = "HARD_LIGHT",
+  DIFFERENCE = "DIFFERENCE",
+  EXCLUSION = "EXCLUSION",
+  HUE = "HUE",
+  SATURATION = "SATURATION",
+  COLOR = "COLOR",
+  LUMINOSITY = "LUMINOSITY",
 }
 
 export enum EasingType {
-  EASE_IN,
-  EASE_OUT,
-  EASE_IN_AND_OUT,
-  LINEAR,
+  EASE_IN = "EASE_IN",
+  EASE_OUT = "EASE_OUT",
+  EASE_IN_AND_OUT = "EASE_IN_AND_OUT",
+  LINEAR = "LINEAR",
 }
 
 export interface LayoutConstraint {
@@ -176,19 +176,19 @@ export interface LayoutConstraint {
 }
 
 export enum VerticalLayoutConstraint {
-  TOP,
-  BOTTOM,
-  CENTER,
-  TOP_BOTTOM,
-  SCALE,
+  TOP = "TOP",
+  BOTTOM = "BOTTOM",
+  CENTER = "CENTER",
+  TOP_BOTTOM = "TOP_BOTTOM",
+  SCALE = "SCALE",
 }
 
 export enum HorizontalLayoutConstraint {
-  LEFT,
-  RIGHT,
-  CENTER,
-  LEFT_RIGHT,
-  SCALE,
+  LEFT = "LEFT",
+  RIGHT = "RIGHT",
+  CENTER = "CENTER",
+  LEFT_RIGHT = "LEFT_RIGHT",
+  SCALE = "SCALE",
 }
 
 export interface LayoutGrid {
@@ -203,13 +203,156 @@ export interface LayoutGrid {
 }
 
 export enum Pattern {
-  COLUMNS,
-  ROWS,
-  GRID,
+  COLUMNS = "COLUMNS",
+  ROWS = "ROWS",
+  GRID = "GRID",
 }
 
 export enum Alignment {
-  MIN,
-  STRETCH,
-  CENTER,
+  MIN = "MIN",
+  STRETCH = "STRETCH",
+  CENTER = "CENTER",
+}
+
+export interface Effect {
+  type: EffectType;
+  visible: Boolean;
+  radius: Number;
+  color: Color;
+  blendMode: BlendMode;
+  offset: Vector;
+}
+
+export enum EffectType {
+  INNER_SHADOW = "INNER_SHADOW",
+  DROP_SHADOW = "DROP_SHADOW",
+  LAYER_BLUR = "LAYER_BLUR",
+  BACKGROUND_BLUR = "BACKGROUND_BLUR",
+}
+
+export interface Paint {
+  type: PaintType;
+  visible: Boolean;
+  opacity: Number;
+  color: Color;
+  blendMode: BlendMode;
+  gradientHandlePositions: Vector[];
+  gradientStops: ColorStop[];
+  scaleMode: ScaleMode;
+  imageTransform: Transform;
+  scalingFactor: Number;
+  imageRef: String;
+  gifRef: String;
+}
+
+export enum PaintType {
+  SOLID = "SOLID",
+  GRADIENT_LINEAR = "GRADIENT_LINEAR",
+  GRADIENT_RADIAL = "GRADIENT_RADIAL",
+  GRADIENT_ANGULAR = "GRADIENT_ANGULAR",
+  GRADIENT_DIAMOND = "GRADIENT_DIAMOND",
+  IMAGE = "IMAGE",
+  EMOJI = "EMOJI",
+}
+
+export enum ScaleMode {
+  FILL = "FILL",
+  FIT = "FIT",
+  TILE = "TILE",
+  STRETCH = "STRETCH",
+}
+
+export interface Vector {
+  x: Number;
+  y: Number;
+}
+
+export interface Size {
+  width: Number;
+  height: Number;
+}
+
+export type Transform = [[Number, Number, Number], [Number, Number, Number]];
+
+export interface FrameOffset {
+  node_id: String;
+  node_offset: Vector;
+}
+
+export interface ColorStop {
+  position: Number;
+  color: Color;
+}
+
+export interface TypeStyle {
+  fontFamily: String;
+  fontPostScriptName: String;
+  paragraphSpacing: Number;
+  paragraphIndent: Number;
+  italic: Boolean;
+  fontWeight: Number;
+  fontSize: Number;
+  textCase: TextCase;
+  textDecoration: TextDecoration;
+  textAlignHorizontal: TextAlignHorizontal;
+  textAlignVertical: TextAlignVertical;
+  letterSpacing: Number;
+  fills: Paint[];
+  opentypeFlags: Record<string, Number>;
+  lineHeightPx: Number;
+  lineHeightPercent: Number;
+  lineHeightPercentFontSize: Number;
+  lineHeightUnit: LineHeightUnit;
+}
+
+export enum TextCase {
+  UPPER = "UPPER",
+  LOWER = "LOWER",
+  TITLE = "TITLE",
+  SMALL_CAPS = "SMALL_CAPS",
+  SMALL_CAPS_FORCED = "SMALL_CAPS_FORCED",
+}
+
+export enum TextDecoration {
+  STRIKETHROUGH = "STRIKETHROUGH",
+  UNDERLINE = "UNDERLINE",
+}
+
+export enum TextAlignHorizontal {
+  LEFT = "LEFT",
+  RIGHT = "RIGHT",
+  CENTER = "CENTER",
+  JUSTIFIED = "JUSTIFIED",
+}
+
+export enum TextAlignVertical {
+  TOP = "TOP",
+  CENTER = "CENTER",
+  BOTTOM = "BOTTOM",
+}
+
+export enum LineHeightUnit {
+  PIXELS = "PIXELS",
+  FONT_SIZE_PERCENT = "FONT_SIZE_%",
+  INTRINSIC_PERCENT = "INTRINSIC_%",
+}
+
+export interface Component {
+  key: String;
+  name: String;
+  description: String;
+}
+
+export interface Style {
+  key: String;
+  name: String;
+  description: String;
+  style_type: StyleType;
+}
+
+export enum StyleType {
+  FILL = "FILL",
+  TEXT = "TEXT",
+  EFFECT = "EFFECT",
+  GRID = "GRID",
 }
