@@ -44,7 +44,9 @@ const FigmaRenderer: FC<{ document: DOCUMENT }> = ({ document }) => {
         x={x}
         y={y}
       >
-        <Document document={document} />
+        <Layer>
+          <Document document={document} />
+        </Layer>
       </Stage>
       <style jsx>{`
         .container {
