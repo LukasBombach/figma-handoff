@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
+import { FileApiResponse } from "../types/figma";
 
-export type FIGMA_FILE = JSON;
-
-async function fetchFigmaFile(id: string): Promise<FIGMA_FILE> {
+async function fetchFigmaFile(id: string): Promise<FileApiResponse> {
   const url = `https://api.figma.com/v1/files/${id}`;
   const headers = new Headers({ "X-Figma-Token": process.env.FIGMA_TOKEN });
   const response = await fetch(url, { headers });
@@ -10,22 +9,22 @@ async function fetchFigmaFile(id: string): Promise<FIGMA_FILE> {
   return figmaFile;
 }
 
-async function importFigmaFixture(id: string): Promise<FIGMA_FILE> {
+async function importFigmaFixture(id: string): Promise<FileApiResponse> {
   return import(`../fixtures/useFigmaFile/${id}.json`);
 }
 
 export function getFigmaFile(
   id: string,
   useFixture: boolean,
-): Promise<FIGMA_FILE> {
+): Promise<FileApiResponse> {
   return useFixture ? importFigmaFixture(id) : fetchFigmaFile(id);
 }
 
 export default function useFigmaFile(
   id: string,
   useFixture: boolean,
-): [FIGMA_FILE] {
-  const [figmaFile, setFigmaFile] = useState<FIGMA_FILE>();
+): [FileApiResponse] {
+  const [figmaFile, setFigmaFile] = useState<FileApiResponse>();
   useEffect(() => {
     getFigmaFile(id, useFixture).then(file => setFigmaFile(file));
   }, []);
