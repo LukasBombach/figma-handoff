@@ -37,7 +37,7 @@ export interface NODE {
     | "TEXT";
   id: string;
   name: string;
-  visible: boolean;
+  visible?: boolean;
 }
 
 export interface DOCUMENT extends NODE {
