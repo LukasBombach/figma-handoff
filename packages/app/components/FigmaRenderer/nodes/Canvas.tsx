@@ -35,6 +35,11 @@ const Canvas: FC<{ node: CANVAS }> = ({ node: canvas }) => {
     evt.preventDefault();
   };
 
+  const handleDragEnd = (e: Konva.KonvaEventObject<DragEvent>) => {
+    const { x, y } = e.target.attrs;
+    setPosition([x, y]);
+  };
+
   return (
     <div className="container" ref={container}>
       <Stage
@@ -42,6 +47,7 @@ const Canvas: FC<{ node: CANVAS }> = ({ node: canvas }) => {
         height={height}
         style={{ background }}
         draggable={true}
+        onDragEnd={handleDragEnd}
         onWheel={handleWheel}
         scaleX={scale}
         scaleY={scale}
