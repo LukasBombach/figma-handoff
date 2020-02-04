@@ -1,13 +1,16 @@
+import { FC } from "react";
+import { DOCUMENT } from "../../types/figma";
 import { Stage, Layer, Text } from "react-konva";
+import Document from "./nodes/Document";
 
-function FigmaRenderer() {
+const FigmaRenderer: FC<{ document: DOCUMENT }> = ({ document }) => {
   return (
     <Stage width={800} height={600}>
       <Layer>
-        <Text text="hello world" />
+        <Document document={document} />
       </Layer>
     </Stage>
   );
-}
+};
 
 export default FigmaRenderer;

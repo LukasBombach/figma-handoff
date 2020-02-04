@@ -10,7 +10,7 @@ const Node: FC<{ node: NODE }> = ({ node }) => {
   const Node = typeMap[node.type];
   if (Node) return <Node node={node} />;
   console.warn(`Missing render node for ${node.name} (${node.type})`);
-  return undefined;
+  return null;
 };
 
 export default Node;
